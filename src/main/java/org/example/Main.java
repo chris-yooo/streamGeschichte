@@ -1,6 +1,10 @@
 package org.example;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -22,6 +26,21 @@ public class Main {
         int productit = Arrays.stream(sorted).reduce(1, (a, b) -> a * b);
 
         System.out.println(productit);
+
+        try {
+        List<Student> eingelesen = Files.lines(Path.of("students.csv"))
+                .skip(1)
+                .distinct()
+                .filter(line -> !line.isEmpty())
+                .map(line -> line.split(","))
+                .map(line -> new Student(line[0], line[1], line[2], line[3]))
+                .collect(Collectors.toList());
+
+            System.out.println(eingelesen);
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
 
     }
 }
