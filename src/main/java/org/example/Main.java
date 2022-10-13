@@ -33,7 +33,7 @@ public class Main {
                 .distinct()
                 .filter(line -> !line.isEmpty())
                 .map(line -> line.split(","))
-                .map(line -> new Student(line[0], line[1], line[2], line[3]))
+                .map(line -> new Student(Integer.parseInt(line[0]), line[1], line[2], line[3]))
                 .collect(Collectors.toList());
 
             System.out.println(eingelesen);
